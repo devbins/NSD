@@ -19,7 +19,7 @@ import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Runnable {
 
-    public static final String SERVICE_NAME = "NSDService";
+    public static final String SERVICE_NAME = "我是服务端";
     public static final String SERVICE_TYPE = "_http._tcp.";
     private Button mBtnRegister;
     private TextView mTvContent;
@@ -120,8 +120,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 msg.what = 0;
                 mHandler.sendMessage(msg);
             }
+            bufferedReader = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            mServerSocket.close();
+            mServerSocket = null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mNsdManager.unregisterService(mRegistrationListener);
     }
 }
