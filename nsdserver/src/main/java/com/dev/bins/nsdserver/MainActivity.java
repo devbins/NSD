@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Message msg = mHandler.obtainMessage();
                 msg.obj = content;
                 msg.what = 0;
-                mHandler.sendMessage(msg);
+                mHandler.sendMessageDelayed(msg,3000);
             }
             bufferedReader = null;
         } catch (IOException e) {
@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //别忘了取消注册
         mNsdManager.unregisterService(mRegistrationListener);
     }
 }

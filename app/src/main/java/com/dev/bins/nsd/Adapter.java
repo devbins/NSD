@@ -15,8 +15,12 @@ import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
 
-    private ArrayList<NsdServiceInfo> datas = new ArrayList<>();
+    private ArrayList<NsdServiceInfo> datas;
     private OnItemClickListener onItemClickListener;
+
+    public Adapter(ArrayList<NsdServiceInfo> datas) {
+        this.datas = datas;
+    }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
